@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Sa olid sessioonist väljaloginud";
 "common_app_settings" = "App settings";
 "common_appearance" = "Välimus";
+"common_system_default" = "Süsteemi vaikeväärtus";
+"common_language" = "Keel";
 "common_audio" = "Heli";
 "common_beta" = "Beetaversioon";
 "common_blocked_users" = "Blokeeritud kasutajad";

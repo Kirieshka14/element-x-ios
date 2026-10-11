@@ -178,6 +178,11 @@ struct SettingsScreen: View {
                     kind: .picker(selection: $context.appAppearance,
                                   items: AppAppearance.allCases.map { (title: $0.name, tag: $0) }))
             
+            ListRow(label: .default(title: L10n.commonLanguage,
+                                    icon: \.translate),
+                    kind: .picker(selection: $context.appLanguage,
+                                  items: AppLanguage.all.map { (title: $0.displayName, tag: $0) }))
+            
             ListRow(label: .default(title: L10n.commonMediaUploadQuality,
                                     icon: \.image),
                     kind: .navigationLink {

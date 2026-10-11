@@ -125,7 +125,9 @@ final nonisolated class AppSettings: @unchecked Sendable {
     /// match the last part of the user ID. For example `example.com` and not `https://matrix.example.com`.
     private(set) var accountProviders: [AccountProvider] = [.managed(serverName: "matrix.org", baseURL: "https://matrix-client.matrix.org")]
     /// Whether or not the user is allowed to manually enter their own account provider or must select from one of `defaultAccountProviders`.
-    private(set) var allowOtherAccountProviders = true
+    /// Fork customization: locked to the single built-in provider so the server
+    /// selection UI is hidden and users cannot enter custom servers.
+    private(set) var allowOtherAccountProviders = false
     /// Whether the components surrounding the app brand/logo should be hidden or not
     private(set) var hideBrandChrome = false
     
@@ -165,6 +167,12 @@ final nonisolated class AppSettings: @unchecked Sendable {
     
     @UserPreference(defaultValue: AppAppearance.system)
     var appAppearance: AppAppearance
+    
+    /// Fork customization: in-app language override. `nil` means follow the system language.
+    /// The value is a language code matching one of the bundles in `Resources/Localizations`
+    /// (e.g. "ru", "uk", "en", "es"). Applied through `Bundle.overrideLocalizations`.
+    @UserPreference(defaultValue: nil)
+    var appLanguage: String?
     
     /// Tracks previous servers the user connected to for autocompletion purposes. Entries are made lowercase on write.
     @UserPreference(key: "previousServers", defaultValue: [])
@@ -297,8 +305,8 @@ final nonisolated class AppSettings: @unchecked Sendable {
     }
     
     private static func makeAnalyticsConfiguration() -> AnalyticsConfiguration? {
-        guard let host = Secrets.postHogHost, let apiKey = Secrets.postHogAPIKey else { return nil }
-        return AnalyticsConfiguration(host: host, apiKey: apiKey)
+        // Fork customization: analytics disabled, no PostHog configuration is shipped.
+        return nil
     }
     
     /// Whether the user has opted in to send analytics.

@@ -93,6 +93,13 @@ struct SettingsScreenViewStateBindings {
         set { userSettings.app.appAppearance = newValue }
     }
     
+    /// Fork customization: the in-app language override shown in the settings screen.
+    /// `nil` represents the system language.
+    var appLanguage: AppLanguage {
+        get { AppLanguage(id: userSettings.app.appLanguage) }
+        set { userSettings.app.appLanguage = newValue.id }
+    }
+    
     init(userSettings: UserSettings) {
         self.userSettings = userSettings
     }

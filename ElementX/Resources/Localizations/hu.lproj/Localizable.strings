@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Ki lett jelentkeztetve a munkamenetből";
 "common_app_settings" = "App settings";
 "common_appearance" = "Megjelenítés";
+"common_system_default" = "Rendszer alapértelmezett";
+"common_language" = "Nyelv";
 "common_audio" = "Hang";
 "common_beta" = "Béta";
 "common_blocked_users" = "Letiltott felhasználók";

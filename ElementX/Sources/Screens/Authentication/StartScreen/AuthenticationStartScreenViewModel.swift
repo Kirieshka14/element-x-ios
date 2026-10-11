@@ -15,6 +15,7 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
     private let authenticationService: AuthenticationServiceProtocol
     private let provisioningParameters: AccountProvisioningParameters?
     private let appMediator: AppMediatorProtocol
+    private let appSettings: AppSettings
     private let userIndicatorController: UserIndicatorControllerProtocol
     
     private let canReportProblem: Bool
@@ -36,6 +37,7 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
         self.authenticationService = authenticationService
         self.provisioningParameters = provisioningParameters
         self.appMediator = appMediator
+        self.appSettings = appSettings
         self.userIndicatorController = userIndicatorController
         canReportProblem = isBugReportServiceEnabled
         
@@ -47,10 +49,10 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
         }
         
         let initialViewState = if !appSettings.allowOtherAccountProviders {
-            // We don't show the create account button when custom providers are disallowed.
-            // The assumption here being that if you're running a custom app, your users will already be created.
+            // Fork customization: the built-in provider is the only option, but registration
+            // stays available (it opens the provider's OAuth flow directly).
             AuthenticationStartScreenViewState(serverNameOrBaseURL: appSettings.accountProviders.count == 1 ? appSettings.accountProviders[0].serverNameOrBaseURL : nil,
-                                               showCreateAccountButton: false,
+                                               showCreateAccountButton: appSettings.showCreateAccountButton,
                                                showQRCodeLoginButton: isQRCodeScanningSupported,
                                                classicAppMode: isClassicAppAccountAllowed ? authenticationService.classicAppAccount.map { .welcomeBack($0) } : nil,
                                                hideBrandChrome: appSettings.hideBrandChrome)
@@ -96,7 +98,12 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
         case .login:
             Task { await login() }
         case .register:
-            actionsSubject.send(.register)
+            if appSettings.allowOtherAccountProviders {
+                actionsSubject.send(.register)
+            } else {
+                // Fork customization: skip server selection, register directly with the built-in provider.
+                Task { await registerDirectly() }
+            }
             
         case .continueWithClassic(let account):
             Task { await login(classicAppAccount: account) }
@@ -156,6 +163,33 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
         }
         
         switch await authenticationService.urlForOAuthLogin(loginHint: loginHint) {
+        case .success(let oAuthData):
+            actionsSubject.send(.loginDirectlyWithOAuth(data: oAuthData, window: window))
+        case .failure:
+            displayError()
+        }
+    }
+    
+    /// Fork customization: configures the single built-in account provider for registration and
+    /// opens its OAuth flow directly, skipping the server selection screen.
+    private func registerDirectly() async {
+        startLoading()
+        defer { stopLoading() }
+        
+        let serverNameOrBaseURL = appSettings.defaultAccountProvider.serverNameOrBaseURL
+        
+        if case .failure = await authenticationService.configure(for: serverNameOrBaseURL, flow: .register) {
+            // Fall back to the classic registration flow (server selection) to surface the error.
+            actionsSubject.send(.register)
+            return
+        }
+        
+        guard let window = state.window else {
+            displayError()
+            return
+        }
+        
+        switch await authenticationService.urlForOAuthLogin(loginHint: nil) {
         case .success(let oAuthData):
             actionsSubject.send(.loginDirectlyWithOAuth(data: oAuthData, window: window))
         case .failure:

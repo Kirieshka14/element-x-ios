@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "セッションからログアウトされました";
 "common_app_settings" = "App settings";
 "common_appearance" = "テーマ";
+"common_system_default" = "システムのデフォルト";
+"common_language" = "言語";
 "common_audio" = "音声";
 "common_beta" = "ベータ版";
 "common_blocked_users" = "ブロックしたユーザー";

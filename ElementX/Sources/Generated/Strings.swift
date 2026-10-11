@@ -518,6 +518,8 @@ internal nonisolated enum L10n {
   internal static var commonAppSettings: String { return L10n.tr("Localizable", "common_app_settings") }
   /// Appearance
   internal static var commonAppearance: String { return L10n.tr("Localizable", "common_appearance") }
+  internal static var commonSystemDefault: String { return L10n.tr("Localizable", "common_system_default") }
+  internal static var commonLanguage: String { return L10n.tr("Localizable", "common_language") }
   /// Audio
   internal static var commonAudio: String { return L10n.tr("Localizable", "common_audio") }
   /// Beta

@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Sei stato disconnesso dalla sessione";
 "common_app_settings" = "App settings";
 "common_appearance" = "Aspetto";
+"common_system_default" = "Predefinito di sistema";
+"common_language" = "Lingua";
 "common_audio" = "Audio";
 "common_beta" = "Beta";
 "common_blocked_users" = "Utenti bloccati";

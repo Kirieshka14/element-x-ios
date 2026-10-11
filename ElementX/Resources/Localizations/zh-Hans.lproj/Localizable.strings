@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "你已注销会话";
 "common_app_settings" = "应用设置";
 "common_appearance" = "外观";
+"common_system_default" = "跟随系统";
+"common_language" = "语言";
 "common_audio" = "音频";
 "common_beta" = "Beta";
 "common_blocked_users" = "已屏蔽用户";

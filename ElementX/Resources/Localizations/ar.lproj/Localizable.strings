@@ -230,6 +230,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "تم تسجيل خروجك من الجلسة";
 "common_app_settings" = "App settings";
 "common_appearance" = "المظهر";
+"common_system_default" = "الافتراضي للنظام";
+"common_language" = "اللغة";
 "common_audio" = "الصوت";
 "common_beta" = "تجريبي";
 "common_blocked_users" = "المستخدمون المحظورون";

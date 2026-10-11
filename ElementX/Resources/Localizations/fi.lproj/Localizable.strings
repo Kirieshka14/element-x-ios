@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Sinut kirjattiin ulos istunnosta";
 "common_app_settings" = "App settings";
 "common_appearance" = "Ulkoasu";
+"common_system_default" = "Järjestelmän oletus";
+"common_language" = "Kieli";
 "common_audio" = "Ääni";
 "common_beta" = "Beeta";
 "common_blocked_users" = "Estetyt käyttäjät";

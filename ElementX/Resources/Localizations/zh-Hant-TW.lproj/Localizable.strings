@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "您已登出工作階段";
 "common_app_settings" = "應用程式設定";
 "common_appearance" = "外觀";
+"common_system_default" = "跟隨系統";
+"common_language" = "語言";
 "common_audio" = "音訊";
 "common_beta" = "測試版";
 "common_blocked_users" = "封鎖的使用者";

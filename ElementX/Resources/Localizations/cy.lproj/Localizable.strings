@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Rydych wedi'ch allgofnodi o'r sesiwn";
 "common_app_settings" = "App settings";
 "common_appearance" = "Gwedd";
+"common_system_default" = "Rhagosodedd y system";
+"common_language" = "Iaith";
 "common_audio" = "Sain";
 "common_beta" = "Beta";
 "common_blocked_users" = "Defnyddwyr wedi'u rhwystro";

@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Odjavljeni ste iz sesije";
 "common_app_settings" = "App settings";
 "common_appearance" = "Izgled";
+"common_system_default" = "Zadano od sustava";
+"common_language" = "Jezik";
 "common_audio" = "Audiozapis";
 "common_beta" = "Beta";
 "common_blocked_users" = "Blokirani korisnici";

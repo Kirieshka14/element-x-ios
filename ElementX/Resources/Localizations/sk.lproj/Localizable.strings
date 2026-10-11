@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Boli ste odhlásení zo relácie.";
 "common_app_settings" = "App settings";
 "common_appearance" = "Vzhľad";
+"common_system_default" = "Systémový predvolený";
+"common_language" = "Jazyk";
 "common_audio" = "Zvuk";
 "common_beta" = "Beta";
 "common_blocked_users" = "Blokovaní používatelia";

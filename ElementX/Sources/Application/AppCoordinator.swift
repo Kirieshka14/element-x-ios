@@ -95,6 +95,9 @@ class AppCoordinator: AppCoordinatorProtocol, AuthenticationFlowCoordinatorDeleg
             appSettings.resetAllSettings()
         }
         
+        // Fork customization: apply the in-app language override before building any UI.
+        applyLanguageOverride()
+        
         self.appDelegate = appDelegate
         self.appHooks = appHooks
         
@@ -444,6 +447,25 @@ class AppCoordinator: AppCoordinatorProtocol, AuthenticationFlowCoordinatorDeleg
         }
         
         await processInlineReply(roomID: roomID, replyText: replyText)
+    }
+    
+    /// Fork customization: applies the user's in-app language choice by overriding the
+    /// bundle's preferred localizations. Falls back to the system language when unset.
+    private func applyLanguageOverride() {
+        guard let language = appSettings.appLanguage else {
+            Bundle.overrideLocalizations = nil
+            return
+        }
+        
+        // Only apply the override when the localization actually exists in the bundle.
+        guard Bundle.lprojBundle(for: language) != nil else {
+            MXLog.error("Requested language \(language) is not available in the bundle.")
+            Bundle.overrideLocalizations = nil
+            return
+        }
+        
+        MXLog.info("Overriding app language: \(language)")
+        Bundle.overrideLocalizations = [language]
     }
     
     // MARK: - Private

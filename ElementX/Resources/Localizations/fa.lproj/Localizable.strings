@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "شما از جلسه خارج شدید";
 "common_app_settings" = "App settings";
 "common_appearance" = "ظاهر";
+"common_system_default" = "پیش‌فرض سیستم";
+"common_language" = "زبان";
 "common_audio" = "صدا";
 "common_beta" = "آزمایشی";
 "common_blocked_users" = "کاربران مسدود";

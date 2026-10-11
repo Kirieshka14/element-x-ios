@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "세션에서 로그아웃되었습니다.";
 "common_app_settings" = "App settings";
 "common_appearance" = "외관";
+"common_system_default" = "시스템 기본값";
+"common_language" = "언어";
 "common_audio" = "소리";
 "common_beta" = "베타";
 "common_blocked_users" = "차단한 사용자";

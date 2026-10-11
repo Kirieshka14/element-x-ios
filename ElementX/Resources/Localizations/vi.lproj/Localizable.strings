@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Bạn đã bị đăng xuất";
 "common_app_settings" = "App settings";
 "common_appearance" = "Giao diện";
+"common_system_default" = "Mặc định hệ thống";
+"common_language" = "Ngôn ngữ";
 "common_audio" = "Âm thanh";
 "common_beta" = "Thử nghiệm";
 "common_blocked_users" = "Người dùng bị chặn";

@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Αποσυνδεθήκατε από την περίοδο λειτουργίας";
 "common_app_settings" = "App settings";
 "common_appearance" = "Εμφάνιση";
+"common_system_default" = "Προεπιλογή συστήματος";
+"common_language" = "Γλώσσα";
 "common_audio" = "Ήχος";
 "common_beta" = "Δοκιμαστική";
 "common_blocked_users" = "Αποκλεισμένοι χρήστες";

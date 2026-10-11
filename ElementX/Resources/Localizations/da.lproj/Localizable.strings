@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Du blev logget ud af sessionen";
 "common_app_settings" = "App settings";
 "common_appearance" = "Udseende";
+"common_system_default" = "Systemstandard";
+"common_language" = "Sprog";
 "common_audio" = "Lyd";
 "common_beta" = "Beta";
 "common_blocked_users" = "Blokerede brugere";

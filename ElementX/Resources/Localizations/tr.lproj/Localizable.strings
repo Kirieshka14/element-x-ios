@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "You were logged out of the session";
 "common_app_settings" = "App settings";
 "common_appearance" = "Görünüm";
+"common_system_default" = "Sistem varsayılanı";
+"common_language" = "Dil";
 "common_audio" = "Ses";
 "common_beta" = "Beta";
 "common_blocked_users" = "Engellenen kullanıcılar";

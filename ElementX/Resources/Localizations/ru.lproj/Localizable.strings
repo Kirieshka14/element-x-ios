@@ -231,6 +231,8 @@
 "common_android_shortcuts_remove_reason_session_logged_out" = "Вы вышли из сессии";
 "common_app_settings" = "Настройки приложения";
 "common_appearance" = "Внешний вид";
+"common_system_default" = "Как в системе";
+"common_language" = "Язык";
 "common_audio" = "Аудио";
 "common_beta" = "Бета-версия";
 "common_blocked_users" = "Заблокированные пользователи";

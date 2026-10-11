@@ -1,0 +1,62 @@
+name: Build IPA
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build unsigned IPA
+    runs-on: macos-15
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup environment
+        run: |
+          brew update && brew install xcodegen pkl
+
+      - name: Configure for production
+        run: |
+          # Fork: analytics secrets are already disabled in the repo (all nil),
+          # so this just regenerates Secrets.swift and the Xcode project.
+          # (Enterprise pipeline commands are unavailable in public forks.)
+          pkl eval -o Components/Secrets/Secrets.swift Components/Secrets/Secrets.pkl
+          xcodegen
+
+      - name: Show schemes
+        run: xcodebuild -list -project ElementX.xcodeproj
+
+      - name: Archive
+        run: |
+          xcodebuild archive \
+            -project ElementX.xcodeproj \
+            -scheme ElementX \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/ElementX.xcarchive \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY=""
+
+      - name: Create unsigned IPA
+        run: |
+          mkdir -p build/Payload
+          cp -R "build/ElementX.xcarchive/Products/Applications/ElementX.app" build/Payload/
+          cd build
+          zip -qry ElementX-unsigned.ipa Payload
+          mkdir -p "$GITHUB_WORKSPACE/output"
+          cp ElementX-unsigned.ipa "$GITHUB_WORKSPACE/output/"
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ElementX-unsigned-ipa
+          path: output/ElementX-unsigned.ipa
+          retention-days: 14
